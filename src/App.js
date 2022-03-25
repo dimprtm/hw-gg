@@ -3,7 +3,7 @@ import './App.css';
 import Search from './components/Search';
 import Home from './pages/home';
 import Album from './components/Album';
-import Gif from './components/Search/Gif';
+import GifComp from './components/GifComp';
 import gif from './data/gif.js';
 
 // console.log(gif);
@@ -29,9 +29,9 @@ function App() {
         </a>
         <Home />
       </header> */}
-      {/* <Album /> */}
-      {/* <Search /> */}
       <Album />
+      {/* <Search /> */}
+      {/* <GifComp /> */}
     </div>
   );
 }
