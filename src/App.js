@@ -1,13 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import Search from './components/Search';
+import Home from './pages/home';
+import Album from './components/Album';
+import Gif from './components/Search/Gif';
+import gif from './data/gif.js';
 
-const spotifyClientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-console.log('Spotify Client ID: ' + spotifyClientID);
+// console.log(gif);
+
+// const giphy_key = process.env.REACT_APP_GIPHY_KEY;
+// console.log("Giphy Secret Key" + giphy_key);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -20,7 +27,11 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+        <Home />
+      </header> */}
+      {/* <Album /> */}
+      {/* <Search /> */}
+      <Album />
     </div>
   );
 }
