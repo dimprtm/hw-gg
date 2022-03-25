@@ -7,9 +7,9 @@ import './Style.css';
 const Album = () => {
     return (
         <div className="album-wrapp">
-            {spotifyData.map(item => {
+            {spotifyData.map((item, index) => {
                 return (
-                    <div className="album" key={item.name + item.album.artists[0].name}>
+                    <div className="album" key={index}>
                         <AlbumImg albumimgUrl={item.album.images[0].url} className="album-img" />
                         <div className="text">
                             <SongTitle songTitle={item.album.artists[0].name}/>
