@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Search from './components/Search';
+// import Search from './components/Search';
 import Home from './pages/home';
 import Album from './components/Album';
 import GifComp from './components/GifComp';
 import gif from './data/gif.js';
+import Search from './pages/search';
 
 // console.log(gif);
 
@@ -29,9 +30,10 @@ function App() {
         </a>
         <Home />
       </header> */}
-      <Album />
+      {/* <Album /> */}
       {/* <Search /> */}
       {/* <GifComp /> */}
+      <Search />
     </div>
   );
 }

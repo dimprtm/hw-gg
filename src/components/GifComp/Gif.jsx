@@ -1,7 +1,7 @@
 import React from "react";
 import data from "../../data/gif-data";
 
-console.log(data);
+// console.log(data);
 
 const Gif = (props) => {
     return (
