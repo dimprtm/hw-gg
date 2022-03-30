@@ -63,7 +63,10 @@ button {
 }
 .btn-spotify {
     padding: 8px 12px;
+    margin-top: 30px;
     background-color: rgb(31,214,96);
+    text-decoration: none;
+    color: black;
     text-align: center;
     display: flex;
     justify-content: center;

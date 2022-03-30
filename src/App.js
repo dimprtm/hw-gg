@@ -6,6 +6,7 @@ import Album from './components/Album';
 import GifComp from './components/GifComp';
 import gif from './data/gif.js';
 import Search from './pages/search';
+import Spotify from './components/Spotify';
 
 // console.log(gif);
 
@@ -33,7 +34,8 @@ function App() {
       {/* <Album /> */}
       {/* <Search /> */}
       {/* <GifComp /> */}
-      <Search />
+      {/* <Search /> */}
+      <Spotify />
     </div>
   );
 }
