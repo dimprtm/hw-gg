@@ -1,48 +1,49 @@
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
 import './Style.css';
 
-const baseUrl = 'api.giphy.com/v1/gifs/search';
+const baseUrl = 'https://api.giphy.com/v1/gifs/search';
 const giphy_key = process.env.REACT_APP_GIPHY_KEY;
 
-class Search extends Component {
+const Search = () => {
 
-    state = {
-        query: '',
-        gifs: []
-    }
+    const [query, setQuery] = useState('');
+    const [gifs, setGifs] = useState([]);
 
-    handleInput = e => this.setState({query: e.target.value});
+    const handleInput = e => setQuery(e.target.value);
 
-    getGifs = async () => {
-        const gifs = await fetch(`https://${baseUrl}?api_key=${giphy_key}&q=${this.state.query}&limit=12`)
+    useEffect(() => {
+        // getGifs();
+    }, [gifs]);
+
+    const getGifs = async (e) => {
+        e.preventDefault()
+        const {data} = await fetch(`${baseUrl}?api_key=${giphy_key}&q=${query}&limit=12`)
         .then(response => response.json());
 
-        this.setState({gifs: gifs.data});
-        console.log(this.state.gifs);
+        setGifs(data);
+        console.log(data);
     }
 
-
-    render() {
-        const {gifs} = this.state;
-
-        return (
-            <>
-                <input type='text' onChange={this.handleInput} />
-                <button type="submit" onClick={this.getGifs}>Search</button>
-                {gifs.length > 0 && (
-                    <div className="gif-wrapp">
-                        {gifs.map((gif) => {
-                            return (
-                                <div key={gif.id}>
-                                    <img src={gif.images.fixed_width.url} alt={gif.title}/>
-                                </div>
-                            );
-                        })}
-                    </div>
-                )}
-            </>
-        );
-    }
+    return (
+        <>
+            <h2>GIPHY Search</h2>
+            <form action="" onSubmit={getGifs}>
+                <input type="text" onChange={handleInput} placeholder="Search tracks"/>
+                <button type={"submit"}>Search</button>
+            </form>
+            {gifs.length > 0 && (
+                <div className="gif-wrapp">
+                    {gifs.map((gif) => {
+                        return (
+                            <div key={gif.id}>
+                                <img src={gif.images.fixed_width.url} alt={gif.title}/>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+        </>
+    )
 }
 
 export default Search;
