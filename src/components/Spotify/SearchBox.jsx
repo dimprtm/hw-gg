@@ -6,7 +6,7 @@ const SearchBox = (props) => {
 			<input
                 type='text'
 				className=''
-				value={props.value}
+				value={props.keyword}
 				onChange={(e) => props.setKeyword(e.target.value)}
 				placeholder='Search tracks...'
 			/>

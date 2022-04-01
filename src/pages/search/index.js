@@ -1,8 +1,19 @@
-import { Component, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import './Style.css';
 
 const baseUrl = 'https://api.giphy.com/v1/gifs/search';
 const giphy_key = process.env.REACT_APP_GIPHY_KEY;
+
+const SearchBar = ({children, getGifs, handleInput}) => {
+    return (
+        <form action="" onSubmit={getGifs}>
+            <input type="text" onChange={handleInput} placeholder="Search gifs"/>
+            {children}
+        </form>
+    );
+}
+
+const ButtonSearch = ({value}) => <button type={"submit"}>{value}</button>;
 
 const Search = () => {
 
@@ -27,10 +38,12 @@ const Search = () => {
     return (
         <>
             <h2>GIPHY Search</h2>
-            <form action="" onSubmit={getGifs}>
-                <input type="text" onChange={handleInput} placeholder="Search tracks"/>
-                <button type={"submit"}>Search</button>
-            </form>
+            <SearchBar
+                handleInput={handleInput}
+                getGifs={getGifs}
+            >
+                <ButtonSearch value="Search" />
+            </SearchBar>
             {gifs.length > 0 && (
                 <div className="gif-wrapp">
                     {gifs.map((gif) => {
