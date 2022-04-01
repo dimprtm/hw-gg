@@ -34,8 +34,8 @@ function App() {
       {/* <Album /> */}
       {/* <Search /> */}
       {/* <GifComp /> */}
-      <Search />
-      {/* <Spotify /> */}
+      {/* <Search /> */}
+      <Spotify />
     </div>
   );
 }
