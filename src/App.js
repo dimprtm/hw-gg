@@ -32,10 +32,10 @@ function App() {
         <Home />
       </header> */}
       {/* <Album /> */}
-      <Search />
+      {/* <Search /> */}
       {/* <GifComp /> */}
       {/* <Search /> */}
-      {/* <Spotify /> */}
+      <Spotify />
     </div>
   );
 }

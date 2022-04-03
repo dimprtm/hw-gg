@@ -11,11 +11,11 @@ const TrackList = (props) => {
 	return (
 		<>
 			{props.tracks.map((t, index) => (
-				<div className="album" key={index + t.uri}>
+				<div className="album" key={t.album.uri}>
                     <AlbumImg  className="album-img" albumimgUrl={t.album.images[0].url}/>
                     <div className="text">
-                        <SongTitle songTitle={t.album.artists[0].name}/>
-                        <Artist artistName={t.name} />
+                        <SongTitle songTitle={t.name}/>
+                        <Artist artistName={t.album.artists[0].name} />
                     </div>
                     <div
 						onClick={() => props.handleSelectedClick(t)}
