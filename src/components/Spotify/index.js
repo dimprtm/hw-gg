@@ -8,6 +8,8 @@ import ButtonSelect from './ButtonSelect';
 import ButtonDeselect from './ButtonDeselect';
 import SelectedTrackList from './SelectedTrackList';
 import SpotifyPlaylistForm from './SpotifyPlaylistForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { storeToken } from '../../actions';
 
 const spotify_client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const spotify_client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -43,6 +45,8 @@ const Spotify = () => {
       title: "",
       description: ""
   });
+  const dispatch = useDispatch();
+  const newToken = useSelector((state) => state.token);
 
   const handleTab1 = () => {
       setActiveTab("tab1");
@@ -53,7 +57,8 @@ const Spotify = () => {
   
   useEffect(() => {
     if(localStorage.getItem("accessToken")) {
-        setToken(localStorage.getItem("accessToken"))
+        // setToken(localStorage.getItem("accessToken"));
+        dispatch(storeToken(localStorage.getItem("accessToken")));
     }
 }, []);
 
@@ -70,7 +75,7 @@ useEffect(() => {
 const getProfile = async () => {
   await fetch(spotify_getprofile_endpoint, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${newToken}`
     }
   }).then(res => res.json())
     .then(json => {
@@ -96,7 +101,7 @@ const getProfile = async () => {
     e.preventDefault()
     const {data} = await axios.get(spotify_tracks_endpoint, {
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + newToken,
         },
         params: {
             q: keyword,
@@ -114,7 +119,7 @@ const postPlaylist = async (e) => {
       method: "post",
       url: `https://api.spotify.com/v1/users/${profile.id}/playlists`,
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + newToken,
       },
       data: {
         title: playlistForm.title,
@@ -131,7 +136,7 @@ const postPlaylist = async (e) => {
       method: "post",
       url: `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`,
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + newToken,
       },
       data: {
         position: 0,
