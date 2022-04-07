@@ -10,6 +10,7 @@ import SelectedTrackList from './SelectedTrackList';
 import SpotifyPlaylistForm from './SpotifyPlaylistForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { storeToken } from '../../actions';
+import { Redirect } from 'react-router-dom';
 
 const spotify_client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const spotify_client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -182,91 +183,7 @@ const handlePlaylistFormChange = e => {
 	return (
     <div className="">
       {localStorage.getItem("accessToken") ? (
-        <div className="column">
-          <div className="heading">
-            <button onClick={handleLogout} className="btn-logout-spotify">
-              Logout
-            </button>
-            <button onClick={getProfile}>get profile</button>
-            <button onClick={postPlaylist}>post</button>
-            <div className='profile'>
-              <h3>Name: {profile.display_name}</h3>
-              <p>ID: {profile.id}</p>
-            </div>
-          </div>
-          <div className="container">
-            <div className="left">
-              <h2>🎵Search Spotify Tracks🎵</h2>
-              <SearchBox
-                searchValue={keyword}
-                setKeyword={setKeyword}
-                getTracks={getTracks}
-              />
-              <div className="album-wrapp">
-                <TrackList
-                  tracks={tracks}
-                  handleSelectedClick={addSelectedTrack}
-                  buttonComponent={ButtonSelect}
-                />
-              </div>
-            </div>
-            <div className="right">
-              <div className="Tabs">
-                {/* Tab nav */}
-                <ul className="nav">
-                  <li
-                    className={activeTab === "tab1" ? "active" : ""}
-                    onClick={handleTab1}
-                  >
-                    ⭐Selected Tracks⭐
-                  </li>
-                  <li
-                    className={activeTab === "tab2" ? "active" : ""}
-                    onClick={handleTab2}
-                  >
-                    Create Playlist
-                  </li>
-                </ul>
-                <div className="outlet">
-                  {/* content will be shown here */}
-                  {activeTab === "tab1" ? (
-                    <SelectedTrackList
-                      tracks={selectedTracks}
-                      handleSelectedClick={removeSelectedTrack}
-                      buttonComponent={ButtonDeselect}
-                    />
-                  ) : (
-                    <form action="" onSubmit={postPlaylist} className="playlist-form">
-                      <label htmlFor="title">Title</label>
-                      <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        value={playlistForm.title}
-                        onChange={handlePlaylistFormChange}
-                        placeholder="title..."
-                        minLength="10"
-                        required
-                      />
-
-                      <label htmlFor="description">Description</label>
-                      <textarea
-                        name="description"
-                        id="description"
-                        value={playlistForm.description}
-                        onChange={handlePlaylistFormChange}
-                        placeholder="description..."
-                      ></textarea>
-                      {/* <input type="text" name="description" id="description" placeholder="description..."/> */}
-
-                      <button type={"submit"}>Create</button>
-                    </form>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Redirect to="/create-playlist" />
       ) : (
         <div className="login">
           <button onClick={handleLogin} className="btn-spotify">
