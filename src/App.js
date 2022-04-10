@@ -1,13 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 // import Search from './components/Search';
-import Home from './pages/home';
-import Album from './components/Album';
-import GifComp from './components/GifComp';
-import gif from './data/gif.js';
-import Search from './pages/search';
 import Spotify from './components/Spotify';
-import { BrowserRouter, Switch, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import CreatePlaylist from './components/Spotify/CreatePlaylist';
 
 // console.log(gif);

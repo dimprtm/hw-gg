@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Spotify.css';
 import axios from 'axios'
-import SpotifyLogo from '../../assets/SpotifyLogo.svg';
 import TrackList from './TrackList';
 import SearchBox from './SearchBox';
 import ButtonSelect from './ButtonSelect';
 import ButtonDeselect from './ButtonDeselect';
 import SelectedTrackList from './SelectedTrackList';
-import SpotifyPlaylistForm from './SpotifyPlaylistForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { storeToken } from '../../actions';
 
-const spotify_client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const spotify_client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
-const spotify_auth_endpoint = "https://accounts.spotify.com/authorize";
-const redirect_uri = "http://localhost:3000";
-const scope = "user-read-private playlist-modify-private";
 const spotify_tracks_endpoint = 'https://api.spotify.com/v1/search';
 const spotify_getprofile_endpoint = 'https://api.spotify.com/v1/me';
 const spotify_create_playlist_endpoint = "https://api.spotify.com/v1/users/user_id/playlists";
@@ -34,7 +27,6 @@ const getHashParams = (hash) => {
 };
 
 const CreatePlaylist = () => {
-    const [token, setToken] = useState('');
       const [tracks, setTracks] = useState([]);
       const [selectedTracks, setSelectedTracks] = useState([]);
       const [keyword, setKeyword] = useState('');
@@ -87,10 +79,6 @@ const CreatePlaylist = () => {
   // useEffect(() => {
   //     getProfile();
   // }, []);
-  
-    const handleLogin = () => {
-      window.location = `${spotify_auth_endpoint}?client_id=${spotify_client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
-    }
   
     const handleLogout = () => {
       window.location = "http://localhost:3000";
